@@ -1,0 +1,379 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>아구찜 백과</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Gowun+Dodum&display=swap">
+<style>
+/* 레이아웃: 흰 종이 위 검은 펜 필기 노트 — 한 줄 세로 흐름, 각 장마다 라인아트 삽화가 그려지며 등장 */
+:root{
+  --paper:#fdfcf9; --ink:#141414; --ink-soft:#4a4a48; --rule:#d9d6cf; --mark:#141414; --hl:#efece4;
+  --f-hand:"Nanum Pen Script","Gaegu",cursive; --f-body:"Gowun Dodum","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  color-scheme:light;
+}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.75;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 64px}
+.wrap{max-width:860px;margin:0 auto;display:flex;flex-direction:column;gap:56px}
+h1,h2,h3{font-family:var(--f-hand);font-weight:400;text-wrap:balance;margin:0;line-height:1.1}
+h1{font-size:clamp(56px,11vw,96px)}
+h2{font-size:clamp(38px,7vw,52px);display:flex;gap:12px;align-items:baseline}
+h2 .no{font-size:.6em;color:var(--ink-soft)}
+h3{font-size:30px}
+p{margin:0;max-width:65ch}
+section{display:flex;flex-direction:column;gap:18px;min-width:0}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
+.hero .lede{font-size:18px;color:var(--ink-soft)}
+.toc{display:flex;flex-wrap:wrap;gap:8px 18px;font-family:var(--f-hand);font-size:24px}
+.toc a{color:var(--ink);text-decoration:none;border-bottom:1.5px solid var(--ink)}
+.toc a:focus-visible,summary:focus-visible{outline:2px dashed var(--ink);outline-offset:3px}
+.art{width:100%;height:auto;max-width:100%}
+.art path,.art circle,.art ellipse,.art line,.art polyline,.art rect{fill:none;stroke:var(--ink);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.art .thin{stroke-width:1.3}
+.draw path,.draw circle,.draw ellipse,.draw line,.draw polyline,.draw rect{stroke-dasharray:var(--len,1200);stroke-dashoffset:0;animation:pen 2.6s ease-out both}
+@keyframes pen{from{stroke-dashoffset:var(--len,1200)}to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.draw *{animation:none!important}}
+.row{display:grid;grid-template-columns:200px 1fr;gap:24px;align-items:start}
+.row>*{min-width:0}
+.teacher{border:2px solid var(--ink);border-radius:14px 4px 16px 6px;padding:14px 18px;background:var(--paper)}
+.teacher b{font-family:var(--f-hand);font-size:24px;font-weight:400;display:block}
+.tbl{overflow-x:auto;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:15px;font-variant-numeric:tabular-nums}
+th,td{padding:8px 10px;text-align:left;border-bottom:1px dashed var(--rule);vertical-align:top}
+th{font-family:var(--f-hand);font-size:22px;font-weight:400}
+tr.us td{background:var(--hl);font-weight:700}
+.tag{display:inline-block;font-size:12px;letter-spacing:.04em;border:1.3px solid var(--ink);border-radius:999px;padding:0 8px;margin-left:4px;font-weight:400}
+.tag.q{border-style:dashed;color:var(--ink-soft)}
+.bars{display:flex;flex-direction:column;gap:8px}
+.bar{display:grid;grid-template-columns:120px 1fr 80px;gap:10px;align-items:center;font-size:15px}
+.bar .track{height:14px;border:1.5px solid var(--ink);border-radius:3px;position:relative}
+.bar .fill{position:absolute;inset:0 auto 0 0;background:repeating-linear-gradient(45deg,var(--ink) 0 2px,transparent 2px 6px)}
+.bar.us .fill{background:var(--ink)}
+.bar .v{text-align:right;font-variant-numeric:tabular-nums}
+.timeline{display:flex;flex-direction:column;gap:0;border-left:2px solid var(--ink);margin-left:8px}
+.ev{position:relative;padding:0 0 18px 22px}
+.ev::before{content:"";position:absolute;left:-8px;top:8px;width:12px;height:12px;border:2px solid var(--ink);border-radius:50%;background:var(--paper)}
+.ev .y{font-family:var(--f-hand);font-size:26px;line-height:1.2}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.card{border:1.6px solid var(--ink);border-radius:6px 14px 8px 12px;padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.card .big{font-family:var(--f-hand);font-size:40px;line-height:1}
+details{border-bottom:1.5px dashed var(--ink);padding:10px 0}
+summary{cursor:pointer;font-family:var(--f-hand);font-size:26px;list-style:none}
+summary::before{content:"Q. "}
+details p{margin-top:6px}
+.small{font-size:13px;color:var(--ink-soft)}
+ul{margin:0;padding-left:20px}
+@media (max-width:640px){.hero{grid-template-columns:1fr}.row{grid-template-columns:1fr}.row .art{max-width:200px}.bar{grid-template-columns:90px 1fr 64px}}
+</style>
+
+</head><body><div class="wrap">
+
+<header class="hero">
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <h1>아구찜 백과</h1>
+    <p class="lede">아귀라는 못생긴 물고기가 어떻게 한국 사람이 사랑하는 매운 찜이 됐는지부터, 프랜차이즈 브랜드끼리 숫자로 비교하는 법까지. 고등학교 1학년도 읽을 수 있게 풀었습니다. 기준은 <b>인생아구찜</b>입니다.</p>
+    <nav class="toc" aria-label="목차">
+      <a href="#what">아구찜이란</a><a href="#brands">연도별 인기 브랜드</a><a href="#compare">가맹점 수·매출</a><a href="#disclosure">정보공개서</a><a href="#expo">박람회 혜택</a><a href="#tech">최신 기기</a><a href="#lunch">점심메뉴</a><a href="#faq">자주 묻는 질문</a>
+    </nav>
+  </div>
+  <svg class="art draw" viewBox="0 0 400 300" role="img" aria-label="펜으로 그린 아귀">
+    <!-- 아귀 몸통: 큰 머리, 넓은 입, 이빨, 등의 유인돌기 -->
+    <path d="M60 170 C 60 100, 150 70, 230 90 C 290 105, 330 140, 350 160 C 330 180, 290 215, 230 225 C 150 240, 60 230, 60 170 Z"/>
+    <path d="M60 170 C 90 175, 130 178, 175 168"/>
+    <path class="thin" d="M75 165 l6 -10 l6 10 l6 -10 l6 10 l6 -10 l6 10 l6 -10 l6 10 l6 -10 l6 10 l6 -9 l6 9"/>
+    <circle cx="150" cy="120" r="9"/><circle cx="152" cy="121" r="3"/>
+    <path d="M150 88 C 140 50, 110 35, 90 40"/><circle cx="86" cy="42" r="7"/>
+    <path d="M350 160 L 385 130 L 380 160 L 385 192 Z"/>
+    <path class="thin" d="M240 100 C 250 130, 250 190, 238 222"/>
+    <path class="thin" d="M200 210 C 215 240, 240 255, 262 250"/>
+    <path class="thin" d="M265 130 q 8 6 0 12 M285 150 q 8 6 0 12 M265 175 q 8 6 0 12"/>
+    <!-- 김 나는 찜 접시 -->
+    <ellipse cx="200" cy="280" rx="150" ry="14"/>
+    <path class="thin" d="M120 60 q -10 -15 0 -30 q 10 -15 0 -30" transform="translate(200 20)"/>
+  </svg>
+</header>
+
+<section id="what">
+  <h2><span class="no">1장</span>아구찜이 뭐예요?</h2>
+  <div class="row">
+    <svg class="art draw" viewBox="0 0 200 160" role="img" aria-label="콩나물과 아귀가 담긴 찜 접시">
+      <ellipse cx="100" cy="110" rx="88" ry="30"/><ellipse cx="100" cy="104" rx="70" ry="20"/>
+      <path class="thin" d="M50 100 q10 -25 20 0 M75 98 q8 -28 18 0 M105 96 q10 -26 20 0 M130 100 q8 -22 16 0"/>
+      <path class="thin" d="M60 92 l-4 -12 M88 88 l2 -14 M118 88 l-3 -13 M140 94 l4 -11"/>
+      <path class="thin" d="M70 50 q-8 -12 0 -24 q8 -12 0 -24 M100 46 q-8 -12 0 -24 q8 -12 0 -24 M130 50 q-8 -12 0 -24 q8 -12 0 -24"/>
+    </svg>
+    <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
+      <p><b>아귀</b>는 바다 밑바닥에 사는 물고기예요. 머리가 몸의 절반이고 입이 엄청 커서 옛날 어부들은 잡으면 "못생겼다"며 바다에 다시 던졌대요. 그래서 '물텀벙'이라는 별명도 있어요.</p>
+      <p>1960~70년대 경남 <b>마산</b>에서 말린 아귀에 고춧가루, 콩나물, 미나리를 넣고 쪄 먹기 시작한 게 아구찜의 시작으로 알려져 있어요. 표준어는 '아귀찜'이지만 사람들이 '아구찜'이라고 더 많이 불러서 가게 이름도 대부분 '아구찜'이에요.</p>
+      <div class="teacher"><b>한 줄 정리</b>아구찜 = 아귀 + 콩나물 + 매운 양념을 쪄서 만든 요리. 살은 쫄깃하고 껍질·내장은 콜라겐이 많아 꼬들꼬들해요.</div>
+    </div>
+  </div>
+</section>
+
+<section id="brands">
+  <h2><span class="no">2장</span>연도별 인기 브랜드</h2>
+  <p>프랜차이즈는 "같은 간판, 같은 맛"으로 여러 가게를 여는 방식이에요. 본사가 레시피와 재료를 대고, 점주(가게 사장님)는 가게를 운영해요. 브랜드가 얼마나 인기 있는지는 보통 <b>가맹점 수</b>가 얼마나 빨리 늘었는지로 봐요.</p>
+  <h3>아구찜 브랜드는 언제 많이 생겼을까?</h3>
+  <p>공정위 사이트에 '아구'가 들어간 정보공개서는 <b>58개</b> 있어요(2026-11-19 기준). 그중 46개를 등록 연도별로 세어 봤어요. 2020~2021년에 아구찜 프랜차이즈가 한꺼번에 쏟아졌어요. 코로나로 배달이 폭발하던 때예요.</p>
+  <div class="bars" aria-label="아구 브랜드 정보공개서 최초등록 연도">
+    <div class="bar"><span>2010~11</span><div class="track"><div class="fill" style="width:19%"></div></div><span class="v">3개</span></div>
+    <div class="bar"><span>2017</span><div class="track"><div class="fill" style="width:25%"></div></div><span class="v">4개</span></div>
+    <div class="bar us"><span>2020</span><div class="track"><div class="fill" style="width:56%"></div></div><span class="v">9개</span></div>
+    <div class="bar"><span>2021</span><div class="track"><div class="fill" style="width:100%"></div></div><span class="v">16개</span></div>
+    <div class="bar"><span>2022</span><div class="track"><div class="fill" style="width:6%"></div></div><span class="v">1개</span></div>
+    <div class="bar"><span>2023</span><div class="track"><div class="fill" style="width:19%"></div></div><span class="v">3개</span></div>
+    <div class="bar"><span>2024</span><div class="track"><div class="fill" style="width:13%"></div></div><span class="v">2개</span></div>
+    <div class="bar"><span>2025</span><div class="track"><div class="fill" style="width:19%"></div></div><span class="v">3개</span></div>
+    <div class="bar"><span>2026</span><div class="track"><div class="fill" style="width:31%"></div></div><span class="v">5개</span></div>
+  </div>
+  <p class="small">검은 막대는 인생아구찜이 등록한 해예요. 공정위 정보공개서 목록 46건을 직접 셌어요 <span class="tag">확인</span>. 나머지 12건은 사이트가 사람 인증(캡챠)을 요구해서 세지 못했어요.</p>
+  <h3>실제로 커진 브랜드는? (가맹점+직영점 수, 연도별 순위)</h3>
+  <p>공정위에서 연 5개 브랜드 중 인생아구찜이 2023·2024·2025년 모두 가맹점 수 1위예요. 2위는 매년 싸다아구찜&amp;탕이었어요. 그런데 싸다아구찜은 2025년에 88곳에서 73곳으로 줄었어요.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>브랜드</th><th>2023</th><th>2024</th><th>2025</th><th>흐름</th></tr></thead>
+    <tbody>
+      <tr class="us"><td>인생아구찜</td><td>112</td><td>175</td><td>203</td><td>2년 새 1.8배</td></tr>
+      <tr><td>싸다아구찜&amp;탕</td><td>34</td><td>88</td><td>73</td><td>2024년 정점, 2025년 15개 감소</td></tr>
+      <tr><td>허광웅의 아구세상</td><td>15</td><td>27</td><td>29</td><td>완만한 증가</td></tr>
+      <tr><td>아구찜참잘하는집</td><td>2</td><td>4</td><td>8</td><td>직영 2곳 포함, 막 시작한 단계</td></tr>
+    </tbody>
+  </table></div>
+  <div class="timeline">
+    <div class="ev"><div class="y">2020년 5월</div>인생아구찜(㈜인생푸드) 가맹사업 시작, 7월 정보공개서 등록 <span class="tag">확인</span></div>
+    <div class="ev"><div class="y">2023년</div>한 해에 63곳 새로 열고 112곳이 돼요 <span class="tag">확인</span></div>
+    <div class="ev"><div class="y">2024년</div>64곳 새로 열고 175곳 <span class="tag">확인</span></div>
+    <div class="ev"><div class="y">2025년</div>30곳 새로 열고 203곳. 명의변경(사장님이 바뀐 가게) 29건 <span class="tag">확인</span></div>
+    <div class="ev"><div class="y">2026년</div>중소벤처기업부·소상공인시장진흥공단 <b>우수 프랜차이즈</b> 선정 <span class="tag">확인</span></div>
+  </div>
+  <p class="small">출처: 공정거래위원회 가맹사업거래 정보공개서(2025년 말 기준), 인생아구찜 2605 정기 정보공개서, 경기신문. 공정위 사이트가 사람 인증을 요구해서 진성아구찜 같은 다른 브랜드는 열어 보지 못했어요. 그래서 위 표는 '아구' 브랜드 전체 순위가 아니에요.</p>
+</section>
+
+<section id="compare">
+  <h2><span class="no">3장</span>가맹점 수·매출액 비교</h2>
+  <p>"장사가 잘되는 브랜드인가?"를 볼 때 숫자 두 개를 봐요. 하나는 <b>가맹점 수</b>(가게가 몇 개인지), 다른 하나는 <b>가맹점 평균매출액</b>(가게 하나가 1년에 평균 얼마를 파는지)이에요.</p>
+  <div class="cards">
+    <div class="card"><span class="small">전국 가맹점 평균매출 (전 업종, 2024년)</span><span class="big">약 3.7억 원</span><span class="small">전년보다 4.3% 늘었어요 · 공정위 가맹사업 현황 <span class="tag">확인</span></span></div>
+    <div class="card"><span class="small">전국 가맹점 수 (전 업종, 2024년)</span><span class="big">37만 9,739개</span><span class="small">전년보다 4.0% 늘었어요 · 공정위 <span class="tag">확인</span></span></div>
+    <div class="card"><span class="small">인생아구찜 가맹점 평균매출 (2025년)</span><span class="big">5억 5,929만 원</span><span class="small">전 업종 평균의 약 1.5배 · 정보공개서 <span class="tag">확인</span></span></div>
+  </div>
+  <h3>평균매출 (2025년, 가게 하나가 1년에 판 돈)</h3>
+  <div class="bars" aria-label="브랜드별 평균매출">
+    <div class="bar us"><span>인생아구찜</span><div class="track"><div class="fill" style="width:100%"></div></div><span class="v">5.59억</span></div>
+    <div class="bar"><span>참잘하는집</span><div class="track"><div class="fill" style="width:86%"></div></div><span class="v">4.79억</span></div>
+    <div class="bar"><span>아구세상</span><div class="track"><div class="fill" style="width:72%"></div></div><span class="v">4.00억</span></div>
+    <div class="bar"><span>싸다아구찜</span><div class="track"><div class="fill" style="width:34%"></div></div><span class="v">1.91억</span></div>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>브랜드</th><th>가맹점 수 (2025)</th><th>평균매출</th><th>3.3㎡(1평)당 매출</th></tr></thead>
+    <tbody>
+      <tr class="us"><td>인생아구찜</td><td>203</td><td>5억 5,929만 원</td><td>3,354만 원</td></tr>
+      <tr><td>아구찜참잘하는집</td><td>6 (직영 2 별도)</td><td>4억 7,921만 원</td><td>1,917만 원</td></tr>
+      <tr><td>허광웅의 아구세상</td><td>29</td><td>4억 28만 원</td><td>983만 원</td></tr>
+      <tr><td>싸다아구찜&amp;탕</td><td>73</td><td>1억 9,106만 원</td><td>1,185만 원</td></tr>
+      <tr><td>전 업종 평균 (기준선)</td><td>—</td><td>약 3.7억 원 (2024)</td><td>—</td></tr>
+    </tbody>
+  </table></div>
+  <div class="teacher"><b>1평당 매출이 왜 중요해요?</b>가게가 크면 매출도 커 보여요. 그래서 넓이로 나눠서 비교해요. 인생아구찜은 1평당 3,354만 원으로 다른 세 브랜드보다 1.7~3.4배 높아요. 같은 크기 가게에서 더 많이 판다는 뜻이에요.</div>
+  <h3>인생아구찜 지역별 평균매출 (2025)</h3>
+  <div class="bars" aria-label="지역별 평균매출">
+    <div class="bar us"><span>서울 (29곳)</span><div class="track"><div class="fill" style="width:100%"></div></div><span class="v">7.71억</span></div>
+    <div class="bar us"><span>인천 (18곳)</span><div class="track"><div class="fill" style="width:89%"></div></div><span class="v">6.87억</span></div>
+    <div class="bar us"><span>부산 (11곳)</span><div class="track"><div class="fill" style="width:74%"></div></div><span class="v">5.67억</span></div>
+    <div class="bar us"><span>경기 (68곳)</span><div class="track"><div class="fill" style="width:71%"></div></div><span class="v">5.51억</span></div>
+    <div class="bar us"><span>전북 (5곳)</span><div class="track"><div class="fill" style="width:67%"></div></div><span class="v">5.18억</span></div>
+    <div class="bar us"><span>충북 (8곳)</span><div class="track"><div class="fill" style="width:66%"></div></div><span class="v">5.11억</span></div>
+    <div class="bar us"><span>대전 (9곳)</span><div class="track"><div class="fill" style="width:65%"></div></div><span class="v">4.98억</span></div>
+    <div class="bar us"><span>충남 (6곳)</span><div class="track"><div class="fill" style="width:60%"></div></div><span class="v">4.66억</span></div>
+    <div class="bar us"><span>울산 (6곳)</span><div class="track"><div class="fill" style="width:60%"></div></div><span class="v">4.64억</span></div>
+    <div class="bar us"><span>대구 (8곳)</span><div class="track"><div class="fill" style="width:60%"></div></div><span class="v">4.61억</span></div>
+    <div class="bar us"><span>경남 (9곳)</span><div class="track"><div class="fill" style="width:49%"></div></div><span class="v">3.80억</span></div>
+    <div class="bar us"><span>전남 (9곳)</span><div class="track"><div class="fill" style="width:49%"></div></div><span class="v">3.77억</span></div>
+  </div>
+  <p class="small">광주·세종·강원·경북은 정보공개서에 0으로 적혀 있어요. 1년을 다 채운 가게가 없어 평균을 내지 않은 걸로 보여요. 출처: 공정위 정보공개서(2025년 기준) <span class="tag">확인</span></p>
+  <div class="teacher"><b>주의할 점</b>평균매출이 높아도 폐점이 많으면 좋은 브랜드가 아니에요. 그래서 꼭 <b>순증감</b>(새로 연 가게 − 문 닫은 가게)을 같이 봐요.</div>
+</section>
+
+<section id="disclosure">
+  <h2><span class="no">4장</span>정보공개서 읽는 법</h2>
+  <div class="row">
+    <svg class="art draw" viewBox="0 0 200 180" role="img" aria-label="돋보기와 서류">
+      <rect x="30" y="15" width="110" height="145" rx="4"/>
+      <line class="thin" x1="45" y1="40" x2="125" y2="40"/><line class="thin" x1="45" y1="60" x2="120" y2="60"/><line class="thin" x1="45" y1="80" x2="110" y2="80"/><line class="thin" x1="45" y1="100" x2="125" y2="100"/><line class="thin" x1="45" y1="120" x2="95" y2="120"/>
+      <circle cx="140" cy="115" r="30"/><line x1="162" y1="137" x2="190" y2="168"/>
+    </svg>
+    <div style="display:flex;flex-direction:column;gap:12px;min-width:0">
+      <p><b>정보공개서</b>는 브랜드의 "성적표 + 가격표"예요. 법으로 본사가 공정거래위원회에 등록해야 하고, 누구나 <b>가맹사업거래 사이트(franchise.ftc.go.kr)</b>에서 볼 수 있어요. 가게를 차리려는 사람은 계약하기 전에 이 서류를 받아 봐야 해요.</p>
+      <p>아래 항목을 브랜드끼리 나란히 놓고 비교하면 돼요.</p>
+    </div>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>항목 (만 원)</th><th>인생아구찜</th><th>아구찜참잘하는집</th><th>싸다아구찜&amp;탕</th><th>허광웅의 아구세상</th><th>대장아구찜</th></tr></thead>
+    <tbody>
+      <tr><td>가맹비 <span class="small">브랜드 입장료</span></td><td>770</td><td>330</td><td>550</td><td>550</td><td>550</td></tr>
+      <tr><td>교육비 <span class="small">수업료</span></td><td>330</td><td>220</td><td>220</td><td>330</td><td>330</td></tr>
+      <tr><td>보증금 <span class="small">돌려받는 약속금</span></td><td>0 (면제)</td><td>300</td><td>0</td><td>0</td><td>0</td></tr>
+      <tr><td>기타비용 <span class="small">설비·첫 재료</span></td><td>3,965</td><td>5,000</td><td>220</td><td>8,580</td><td>3,300</td></tr>
+      <tr><td><b>부담금 합계</b></td><td><b>5,065</b></td><td><b>5,850</b></td><td><b>990</b></td><td><b>9,460</b></td><td><b>4,180</b></td></tr>
+      <tr><td>인테리어 1평당</td><td>165</td><td>150</td><td>공시 0</td><td>165</td><td>220</td></tr>
+      <tr><td>기준 면적 / 인테리어 합계</td><td>33㎡ / 1,650</td><td>33㎡ / 1,500</td><td>83㎡ / 0</td><td>99㎡ / 4,950</td><td>33㎡ / 2,200</td></tr>
+      <tr><td>계약기간 (최초 / 연장)</td><td>1년 / 1년</td><td>2년 / 1년</td><td>2년 / 1년</td><td>2년 / 1년</td><td>2년 / 1년</td></tr>
+      <tr><td>로열티</td><td>월 33 정액</td><td colspan="4">공정위 요약 화면에는 없음 (정보공개서 PDF 본문에만 있어요)</td></tr>
+      <tr class="us"><td>폐점율 2025 <span class="small">(종료+해지)÷(연초+신규)</span></td><td>1.0%</td><td>0%</td><td>18.9%</td><td>6.5%</td><td>—</td></tr>
+    </tbody>
+  </table></div>
+  <div class="teacher"><b>표에서 꼭 볼 것</b>싸다아구찜은 시작하는 돈이 990만 원으로 제일 싸요. 그런데 2025년에 17곳이 계약을 깼고(폐점율 18.9%), 가게당 매출도 1.91억 원이에요. 싸게 시작한 대가일 수 있어요. 인생아구찜은 부담금이 5,065만 원으로 중간이에요. 대신 폐점율은 1.0%로 한식 업종 평균(17.4%)의 17분의 1이에요.</div>
+  <h3>폐점율 연도별 비교</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>구분</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr></thead>
+    <tbody>
+      <tr><td>한식 업종 전체</td><td>11.8%</td><td>12.8%</td><td>15.4%</td><td>16.1%</td><td>17.4%</td></tr>
+      <tr class="us"><td>인생아구찜</td><td>—</td><td>—</td><td>2.6%</td><td>0.6%</td><td>1.0%</td></tr>
+      <tr><td>싸다아구찜&amp;탕</td><td>—</td><td>—</td><td>—</td><td>6.4%</td><td>18.9%</td></tr>
+      <tr><td>허광웅의 아구세상</td><td>—</td><td>—</td><td>—</td><td>—</td><td>6.5%</td></tr>
+    </tbody>
+  </table></div>
+  <ul class="small">
+    <li>판촉비 (2025, 인생아구찜): 4억 4,021만 원</li>
+    <li>법 위반 (최근 3년, 인생아구찜): 0건</li>
+  </ul>
+  <div class="cards">
+    <div class="card"><span class="small">인생아구찜 가맹점 부담금 합계</span><span class="big">5,065만 원</span><span class="small">가맹비 + 교육비 + 보증금 + 기타비용 · 인테리어 별도 <span class="tag">확인</span></span></div>
+    <div class="card"><span class="small">본사에 맡겨 두는 돈 (예치 가맹금)</span><span class="big">1,100만 원</span><span class="small">가맹비 770 + 교육비 330. 가게가 문을 열 때까지 은행이 맡아 둬요 <span class="tag">확인</span></span></div>
+  </div>
+  <p class="small">출처: 인생아구찜 2605 정기 정보공개서, 공정위 가맹사업거래 정보공개서 열람·가맹희망플러스(2025년 기준, 2026-11-19 조회). 금액은 부가세 포함이에요. 대장아구찜은 2026년 10월에 등록한 신생 브랜드예요(직영 1곳). 폐점율은 공정위 업종 통계와 같은 식으로 계산했어요. 나머지 '아구' 브랜드 41개는 공정위 사이트가 5건마다 사람 인증을 요구해서 아직 열지 못했어요.</p>
+</section>
+
+<section id="expo">
+  <h2><span class="no">5장</span>창업박람회 혜택</h2>
+  <div class="row">
+    <svg class="art draw" viewBox="0 0 200 170" role="img" aria-label="박람회 부스">
+      <path d="M20 60 L100 20 L180 60"/><rect x="30" y="60" width="140" height="90"/>
+      <rect class="thin" x="50" y="80" width="100" height="30"/><line class="thin" x1="60" y1="95" x2="140" y2="95"/>
+      <circle cx="60" cy="140" r="8"/><path d="M60 148 v18"/><circle cx="140" cy="140" r="8"/><path d="M140 148 v18"/>
+    </svg>
+    <div style="display:flex;flex-direction:column;gap:12px;min-width:0">
+      <p>창업박람회는 여러 브랜드가 한곳에 부스를 차리고 예비 점주를 만나는 행사예요. 서울에서 제일 큰 건 코엑스의 <b>IFS 프랜차이즈 창업·산업박람회</b>예요.</p>
+      <ul>
+        <li>2026 상반기(제60회): 4월 2~4일, 코엑스, 약 300개 브랜드·700부스 <span class="tag">확인</span></li>
+        <li>2026 하반기(제61회): 10월 22~24일, 코엑스 <span class="tag">확인</span></li>
+        <li>입장료: 사전등록 5,000원, 현장 15,000원 <span class="tag q">추정</span></li>
+        <li>2027 상반기 일정: 아직 발표 확인 안 됨 (예년엔 3~4월)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>업계에서 흔한 박람회 혜택</th><th>사례</th><th>근거</th></tr></thead>
+    <tbody>
+      <tr><td>가맹비·교육비 면제 (선착순)</td><td>1,300만 원 상당, 30호점 한정 (고깃집 브랜드, 2026)</td><td>스포츠경향 <span class="tag q">추정</span></td></tr>
+      <tr><td>가맹비·교육비·광고비 묶음 면제</td><td>선착순 10개점, 총 1,000만 원 (2025)</td><td>다음 뉴스 <span class="tag q">추정</span></td></tr>
+      <tr><td>간판 무상, 로열티 1년 면제, 무이자 대출</td><td>2013~2019 박람회 특전 기사</td><td>시대일보 <span class="tag q">추정</span></td></tr>
+    </tbody>
+  </table></div>
+  <h3>2026 하반기 IFS에서 본 비교 (인생아구찜 vs 육회바른연어)</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>항목</th><th>인생아구찜 (10평)</th><th>육회바른연어 (15평)</th></tr></thead>
+    <tbody>
+      <tr><td>박람회 혜택</td><td class="">할인·면제 표기 없음</td><td>가맹비 1,200만 → 300만 원 (75% 할인)</td></tr>
+      <tr><td>가맹비 + 교육비</td><td>770만 + 330만 = 1,100만 원</td><td>300만 + 330만 = 630만 원</td></tr>
+      <tr><td>공개 창업비용 합계</td><td>5,065만 원 (인테리어 포함 시 6,715만 원)</td><td>7,105만 원 (감리·보증금 더하면 최소 7,605만 원)</td></tr>
+      <tr><td>1평당 창업비용</td><td>671.5만 원 (인테리어 포함)</td><td>473.7만 원</td></tr>
+      <tr><td>로열티</td><td>월 33만 원 정액</td><td>매출의 1.5% + 광고비 2%</td></tr>
+      <tr><td>매장 수</td><td>215개 (2026.8 보도)</td><td>300호점 앞둠 (2026.9 보도)</td></tr>
+      <tr><td>내세운 점</td><td>위생등급 '매우 우수' 90% 이상, 간판 교체 지원 (분기 5곳, 최대 100만 원)</td><td>정보공개서 매출·실투자금을 1장 + QR로 보여 줌</td></tr>
+    </tbody>
+  </table></div>
+  <div class="teacher"><b>로열티 비교 계산해 보기</b>월매출 4,600만 원 가게라면 육회바른연어식(1.5%+2%)은 한 달 약 161만 원이에요. 인생아구찜은 33만 원이에요. 박람회에서 가맹비를 깎아 주는 것보다 이렇게 <b>매달 덜 내는 돈</b>을 보여 주는 게 설득력이 클 수 있어요.</div>
+  <p class="small">출처: 박람회 참관 보고서_2026 하반기 IFS(운영지원팀), 창업도(2026.6.5 수정), 언론 보도. 인생아구찜 박람회 부스의 특전은 이 보고서에도 기재가 없어요. 아구찜 경쟁 브랜드는 이번 박람회 비교 대상에 없었어요.</p>
+  <div class="teacher"><b>성과로 보면</b>면제 혜택은 계약을 빨리 끌어오지만, 교육까지 깎으면 새 가게의 초반 매출이 약해질 수 있어요. 그래서 혜택의 효과는 <b>계약 전환율</b>과 <b>오픈 후 3~6개월 매출</b>을 함께 재야 해요.</div>
+</section>
+
+<section id="tech">
+  <h2><span class="no">6장</span>최신 기기를 들인 매장</h2>
+  <div class="row">
+    <svg class="art draw" viewBox="0 0 200 180" role="img" aria-label="서빙로봇과 테이블오더 태블릿">
+      <rect x="40" y="30" width="60" height="40" rx="8"/><circle cx="58" cy="50" r="5"/><circle cx="82" cy="50" r="5"/>
+      <path d="M45 70 L35 150 L105 150 L95 70"/><line class="thin" x1="38" y1="100" x2="102" y2="100"/><line class="thin" x1="36" y1="125" x2="104" y2="125"/>
+      <circle cx="50" cy="160" r="8"/><circle cx="90" cy="160" r="8"/>
+      <rect x="125" y="80" width="60" height="44" rx="4"/><line class="thin" x1="135" y1="94" x2="175" y2="94"/><line class="thin" x1="135" y1="106" x2="165" y2="106"/><path d="M155 124 v26 M140 150 h30"/>
+    </svg>
+    <div style="display:flex;flex-direction:column;gap:12px;min-width:0">
+      <p>요즘 식당에는 <b>테이블오더</b>(자리에서 태블릿으로 주문), <b>키오스크</b>, <b>서빙로봇</b>이 많아요. 목적은 대부분 "직원 일을 줄여 인건비를 아끼자"예요.</p>
+      <p>그런데 조사 결과가 서로 반대예요. 한쪽만 믿으면 안 된다는 뜻이에요.</p>
+    </div>
+  </div>
+  <div class="cards">
+    <div class="card"><span class="small">로봇을 들인 이유가 인건비 절감</span><span class="big">99.8%</span><span class="small">뉴시스 2025.02 <span class="tag">확인</span></span></div>
+    <div class="card"><span class="small">로봇 도입 후 효과가 있었다</span><span class="big">69.7%</span><span class="small">뉴시스 2025.02 <span class="tag">확인</span></span></div>
+    <div class="card"><span class="small">서빙로봇 들인 뒤 운영비가 오히려 늘었다</span><span class="big">68.2%</span><span class="small">사용 중단 57.7% · 자영업자 114명 · 한국경제 2026.04 <span class="tag">확인</span></span></div>
+    <div class="card"><span class="small">테이블오더 월 이용료</span><span class="big">대당 3만 원 이하</span><span class="small">업계 설명, 실측 아님 <span class="tag q">추정</span></span></div>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>재야 할 것</th><th>기기 도입 매장</th><th>미도입 매장</th></tr></thead>
+    <tbody>
+      <tr><td>인건비율 (인건비 ÷ 매출)</td><td>도입 전후 POS로 측정</td><td>같은 기간 비교군</td></tr>
+      <tr><td>테이블당 객단가</td><td>측정 필요</td><td>측정 필요</td></tr>
+      <tr><td>테이블 회전수</td><td>측정 필요</td><td>측정 필요</td></tr>
+      <tr><td>기기 월 사용료 회수 기간</td><td>사용료 ÷ 줄어든 인건비</td><td>—</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small">이 부분의 매장별 수치는 사내 자료라서 공개본에서는 뺐어요. 내부용 버전에서 볼 수 있어요.</p>
+</section>
+
+<section id="lunch">
+  <h2><span class="no">7장</span>점심메뉴를 하는 매장</h2>
+  <div class="row">
+    <svg class="art draw" viewBox="0 0 200 170" role="img" aria-label="해와 1인 밥상">
+      <circle cx="150" cy="40" r="20"/><path class="thin" d="M150 8 v8 M150 64 v8 M118 40 h8 M174 40 h8 M128 18 l6 6 M166 56 l6 6 M172 18 l-6 6 M134 56 l-6 6"/>
+      <path d="M30 110 h110 a55 30 0 0 1 -110 0 Z"/><ellipse cx="85" cy="110" rx="55" ry="10"/>
+      <path class="thin" d="M150 100 l30 -40 M160 104 l30 -40"/>
+      <line x1="10" y1="160" x2="190" y2="160"/>
+    </svg>
+    <div style="display:flex;flex-direction:column;gap:12px;min-width:0">
+      <p>아구찜은 보통 저녁에 여럿이 술과 함께 먹는 음식이에요. 그래서 점심 시간에는 가게가 비어 있는 경우가 많아요. <b>점심메뉴</b>(1인 아구찜, 아구탕, 점심특선)는 그 빈 시간에 손님을 받자는 전략이에요.</p>
+      <p>인생아구찜 홀매장 점심메뉴는 4가지예요. <b>코다리조림, 아구지리탕, 아구매운탕, 알탕</b>. 2인부터 시킬 수 있고 오후 5시까지 팔아요. 맵기는 1~6단계로 고를 수 있어요.</p>
+    </div>
+  </div>
+  <p class="small">이 부분의 매장별 수치는 사내 자료라서 공개본에서는 뺐어요. 내부용 버전에서 볼 수 있어요.</p>
+  <h3>참고: 다른 업종 점심 메뉴</h3>
+  <div class="cards">
+    <div class="card"><span class="small">버거 업종 점심 저가 메뉴 (참고)</span><span class="big">손님 +13%</span><span class="small">점심 매출 +5% · 2022 2분기 · 아시아경제 <span class="tag q">추정</span></span></div>
+    <div class="card"><span class="small">버거 업종 점심 메뉴 재출시 (참고)</span><span class="big">매출 +11%</span><span class="small">2021 · 아시아경제 <span class="tag q">추정</span></span></div>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>효과율 비교 지표</th><th>점심 운영 매장</th><th>미운영 매장</th><th>왜 보나요</th></tr></thead>
+    <tbody>
+      <tr><td>점심 매출 비중</td><td>측정 필요</td><td>측정 필요</td><td>점심이 정말 매출을 더해 주는지</td></tr>
+      <tr><td>시간당 인건비 대비 매출</td><td>측정 필요</td><td>측정 필요</td><td>점심 직원 비용을 넘는지</td></tr>
+      <tr><td>점심 손님의 저녁 재방문</td><td>측정 필요</td><td>—</td><td>점심이 저녁 손님을 데려오는지</td></tr>
+      <tr><td>저녁 매출 변화</td><td>측정 필요</td><td>측정 필요</td><td>저녁 손님을 싼 점심이 뺏는지</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small">버거 수치는 업종이 달라 아구찜에 그대로 옮기면 안 돼요. 점심 운영 매장과 미운영 매장의 POS를 같은 기간으로 뽑아 위 표를 채우는 게 가장 정확해요.</p>
+</section>
+
+<section id="faq">
+  <h2><span class="no">8장</span>자주 물어볼 만한 질문</h2>
+  <details open><summary>인생아구찜은 얼마나 빨리 컸나요?</summary><p>2020년 5월에 시작해서 2023년 112곳, 2024년 175곳, 2025년 203곳이 됐어요. 2023~2024년에는 해마다 60곳 넘게 새로 열었어요. 2025년에는 신규가 30곳으로 줄었어요. 대신 사장님이 바뀐 가게(명의변경)가 29건으로 크게 늘었어요. 이제는 새 가게를 여는 것만큼 기존 가게를 지키는 게 중요해졌다는 신호예요.</p></details>
+  <details><summary>다른 아구찜 브랜드보다 큰가요?</summary><p>공정위 사이트에서 확인한 4개 브랜드 중에서는 가맹점 수(203곳), 평균매출(5.59억 원), 1평당 매출(3,354만 원) 모두 1등이에요. 다만 '아구' 브랜드 58개를 전부 열어 보지는 못했어요(사이트 사람 인증 때문). 그래서 "업계 1위"라고 말하려면 나머지도 확인해야 해요.</p></details>
+  <details><summary>평균매출이 높으면 좋은 브랜드인가요?</summary><p>반만 맞아요. 매출에서 재료비·월세·인건비를 빼고 남는 돈(점주 수익)이 중요하고, 문 닫는 가게가 적어야 해요. 평균매출, 순증감, 폐점률을 같이 보세요.</p></details>
+  <details><summary>정보공개서는 어디서 보나요?</summary><p>공정거래위원회 가맹사업거래 사이트(franchise.ftc.go.kr)에서 브랜드 이름으로 검색하면 돼요. 가맹 희망자는 계약 전에 본사에서 직접 받을 권리도 있어요.</p></details>
+  <details><summary>박람회에서 계약하면 정말 이득인가요?</summary><p>가맹비·교육비 면제처럼 당장 아끼는 돈은 커요. 업계 사례로는 1,000만~1,300만 원 상당이에요. 다만 혜택 때문에 서둘러 계약하면 상권 분석이 약해질 수 있어요. 면제 금액보다 그 브랜드의 폐점률을 먼저 보세요.</p></details>
+  <details><summary>서빙로봇이나 테이블오더를 꼭 들여야 하나요?</summary><p>정답이 없어요. "효과 있다" 69.7%, "운영비가 늘었다" 68.2%로 조사마다 반대예요. 가게 넓이, 동선, 직원 수에 따라 달라서 시범 매장에서 직접 재 보는 게 맞아요.</p></details>
+  <details><summary>점심메뉴는 해야 하나요?</summary><p>상권에 따라 달라요. 사내 분석에서도 상권에 따라 결과가 크게 갈렸어요. 점심 손님이 있는 상권(오피스, 병원, 관공서 주변)이면 해 볼 만해요. 효과는 점심 매출만 보지 말고 점심 인건비를 넘는지, 저녁 매출을 깎아 먹지 않는지까지 봐야 해요.</p></details>
+  <details><summary>박람회에서 우리 브랜드는 뭘 내세워야 하나요?</summary><p>2026 하반기 IFS에서 경쟁사는 가맹비를 75% 깎아 줬어요. 인생아구찜은 가맹비를 깎지 않았어요. 대신 매달 내는 로열티가 33만 원 정액이라 매출의 3.5%를 떼는 브랜드보다 한 달 100만 원 넘게 덜 낼 수 있어요. 정보공개서상 평균매출 5.59억 원도 있어요. 이 둘을 같은 연도 기준 1장으로 보여 주는 게 할인보다 강해요.</p></details>
+  <details><summary>이 백과의 빈칸은 어떻게 채우나요?</summary><p>① 사내 정보공개서 원본에서 인생아구찜 수치, ② 가맹사업거래 사이트에서 경쟁 브랜드 공개본, ③ 가맹영업 기록에서 박람회 특전, ④ POS에서 기기·점심 운영 매장과 미운영 매장 비교. 이 네 가지면 '미확인' 칸이 모두 채워져요.</p></details>
+</section>
+
+<section>
+  <h3>표시 보는 법 · 출처</h3>
+  <p class="small"><span class="tag">확인</span> 공식 기관·언론 원문에서 확인한 수치. <span class="tag q">추정</span> 기사 요약이나 2차 자료라 원문 확인이 필요한 수치. "미확인"은 찾지 못한 칸이에요. 조사일 2026-11-19.</p>
+  <p class="small">출처: 공정거래위원회 2025년 가맹사업 현황(서울신문 2026.04.12) · 경기신문(인생아구찜 우수 프랜차이즈) · 알바몬 기업정보(인생아구찜 연표) · 코엑스 IFS 박람회 공식 페이지 · 뉴시스 2025.02.19(로봇 도입) · 한국경제 2026.04(서빙로봇 설문) · 뉴스토마토(테이블오더) · 스포츠경향 2026.03.31, 다음 뉴스 2025.01.21(박람회 특전) · 아시아경제(점심 메뉴) · 한국경제 2026.06(서울 창업비용).</p>
+</section>
+
+</div>
+
+<script>
+// 각 라인아트의 실제 선 길이를 재서 '펜으로 그려지는' 애니메이션 길이를 맞춘다.
+document.querySelectorAll('.draw').forEach(function(svg){
+  svg.querySelectorAll('path,circle,ellipse,line,polyline,rect').forEach(function(el,i){
+    try{var L=Math.ceil(el.getTotalLength());el.style.setProperty('--len',L);el.style.animationDelay=(i*0.12)+'s';}catch(e){}
+  });
+});
+</script>
+</body></html>
